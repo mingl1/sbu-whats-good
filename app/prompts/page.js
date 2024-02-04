@@ -90,7 +90,7 @@ const prompts = () => {
         <div className="mt-10 mb-10">
           <div className="flex justify-between">
             <p className="mb-2">{plan}</p>
-            <Link href={{ pathname: "/" }}>🍕</Link>
+            <Link href={{ pathname: "/" }}>Wolfieats🍕</Link>
           </div>
           <textarea
             onKeyDown={newPrompt}

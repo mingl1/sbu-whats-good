@@ -23,6 +23,7 @@ export default function Prompts() {
   const [userPrompt, setUserPrompt] = useState("");
   const [allPrompts, setAllPrompts] = useState([]);
   const [threadId, setThreadId] = useState("");
+  const [formBo, setFormBo] = useState("");
   // const [aiResponse, setAiResponse] = useState("");
   const [assistantId, setAssistantId] = useState(
     "asst_62TDGnN62oH98zKeRxYBD2cb"
@@ -175,16 +176,17 @@ export default function Prompts() {
       formBody.append("assistantId", assistantId);
 
       formBody.append("instructions", instructions);
+      setFormBo(formBody);
       const runId = await axios.post("/api/run", formBody);
       console.log(runId.data);
       setThreadId(thread.data.id);
       setRunId(runId.data.id);
     } else if (!runId) {
       console.log("threadId", threadId);
-      const formBody = new FormData();
-      formBody.append("threadId", threadId);
-      formBody.append("content", userPrompt);
-      const data = await axios.post("/api/messages", formBody);
+      // const formBody = new FormData();
+      // formBo.append("threadId", threadId);
+      formBo.replace("content", userPrompt);
+      const data = await axios.post("/api/messages", formBo);
       formBody.append("assistantId", assistantId);
       const instructions =
         "I have a " +
@@ -192,8 +194,8 @@ export default function Prompts() {
         ". What are my food options given today is " +
         days[day] +
         "?";
-      formBody.append("instructions", instructions);
-      const runId = await axios.post("/api/run", formBody);
+      formBo.replace("instructions", instructions);
+      const runId = await axios.post("/api/run", formBo);
       // console.log(runId.data);
       setRunId(runId.data.id);
     }

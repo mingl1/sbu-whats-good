@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useCallback, Suspense } from "react";
 import React from "react";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import PromptOutput from "../components/PromptOutput";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Search from "./search";
 // Get three random recommendations; can add more if ya want
 let timer;
 const days = [
@@ -32,7 +33,7 @@ export default function Prompts() {
     rec2: "",
   });
 
-  const searchParams = <Suspense>{useSearchParams()}</Suspense>;
+  const searchParams = <Search />;
   // meal is wat da user selects (unlimited, swipe, or dining)
   const meal = searchParams.get("meal");
   const recommend = () => {

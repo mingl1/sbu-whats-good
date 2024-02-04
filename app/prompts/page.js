@@ -8,18 +8,18 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 // Get three random recommendations; can add more if ya want
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let timer;
 
 const Prompts = () => {
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let timer;
   const [userPrompt, setUserPrompt] = useState("");
   const [allPrompts, setAllPrompts] = useState([]);
   const [threadId, setThreadId] = useState("");

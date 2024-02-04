@@ -7,7 +7,7 @@ import PromptOutput from "../components/PromptOutput";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Searchbar } from "./search";
+import Searchbar from "./search";
 // Get three random recommendations; can add more if ya want
 let timer;
 const days = [

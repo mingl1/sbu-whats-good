@@ -36,7 +36,7 @@ export default function Prompts() {
   const searchParams = useSearchParams();
   // meal is wat da user selects (unlimited, swipe, or dining)
   const meal = searchParams.get("meal");
-  function recommend() {
+  const recommend = () => {
     const recommendations = [
       "Asian cuisine",
       "Coffee and drinks",
@@ -60,7 +60,7 @@ export default function Prompts() {
     let rec3 = recommendations[index3];
 
     return { rec1, rec2, rec3 };
-  }
+  };
   // Set inital recommended prompts so that client and server variables are da same
   useEffect(() => {
     setRecommendations(recommend());

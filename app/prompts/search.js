@@ -9,7 +9,7 @@ function Search() {
   return <input placeholder="Search..." />;
 }
 
-export function Searchbar() {
+export default function Searchbar() {
   return (
     // You could have a loading skeleton as the `fallback` too
     <Suspense>

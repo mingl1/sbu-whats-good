@@ -7,7 +7,7 @@ import PromptOutput from "../components/PromptOutput";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import Search from "./search";
+import { Searchbar } from "./search";
 // Get three random recommendations; can add more if ya want
 let timer;
 const days = [
@@ -33,7 +33,7 @@ export default function Prompts() {
     rec2: "",
   });
 
-  const searchParams = <Search />;
+  const searchParams = <Searchbar />;
   // meal is wat da user selects (unlimited, swipe, or dining)
   const meal = searchParams.get("meal");
   const recommend = () => {

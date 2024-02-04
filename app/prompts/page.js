@@ -201,7 +201,7 @@ export default function Prompts() {
           <Skeleton
             key={index}
             height={200}
-            width={"100%"}
+            width={800}
             count={1}
             className="bg-[#211c1c] rounded-md breathe"
             style={{ backgroundColor: "#262626" }}
@@ -241,7 +241,7 @@ export default function Prompts() {
                 setUserPrompt(recommendations.rec1);
                 handleClick(recommendations.rec1);
               }}
-              className="cursor-pointer p-4 bg-neutral-800 text-center rounded-md flex justify-center align-middle"
+              className="cursor-pointer p-4 bg-neutral-800 text-center rounded-md"
             >
               {recommendations.rec1}
             </div>
@@ -250,7 +250,7 @@ export default function Prompts() {
                 setUserPrompt(recommendations.rec2);
                 handleClick(recommendations.rec2);
               }}
-              className="cursor-pointer p-4 bg-neutral-800 text-center rounded-md flex justify-center align-middle"
+              className="cursor-pointer p-4 bg-neutral-800 text-center rounded-md "
             >
               {recommendations.rec2}
             </div>

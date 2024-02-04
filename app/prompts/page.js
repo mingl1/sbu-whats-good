@@ -23,7 +23,7 @@ export default function Prompts() {
   const [userPrompt, setUserPrompt] = useState("");
   const [allPrompts, setAllPrompts] = useState([]);
   const [threadId, setThreadId] = useState("");
-  const [formBo, setFormBo] = useState("");
+  const [formBo, setFormBo] = useState(new FormData());
   // const [aiResponse, setAiResponse] = useState("");
   const [assistantId, setAssistantId] = useState(
     "asst_62TDGnN62oH98zKeRxYBD2cb"
@@ -179,13 +179,14 @@ export default function Prompts() {
       setFormBo(formBody);
       const runId = await axios.post("/api/run", formBody);
       console.log(runId.data);
+      // formBo.
       setThreadId(thread.data.id);
       setRunId(runId.data.id);
     } else if (!runId) {
       console.log("threadId", threadId);
       // const formBody = new FormData();
       // formBo.append("threadId", threadId);
-      formBo.replace("content", userPrompt);
+      formBo.append("content", userPrompt);
       const data = await axios.post("/api/messages", formBo);
       formBody.append("assistantId", assistantId);
       const instructions =

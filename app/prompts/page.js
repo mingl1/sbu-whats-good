@@ -188,14 +188,14 @@ export default function Prompts() {
       // formBo.append("threadId", threadId);
       formBo.append("content", userPrompt);
       const data = await axios.post("/api/messages", formBo);
-      formBody.append("assistantId", assistantId);
+      // formBo.append("assistantId", assistantId);
       const instructions =
         "I have a " +
         plan +
         ". What are my food options given today is " +
         days[day] +
         "?";
-      formBo.replace("instructions", instructions);
+      formBo.append("instructions", instructions);
       const runId = await axios.post("/api/run", formBo);
       // console.log(runId.data);
       setRunId(runId.data.id);

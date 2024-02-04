@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import React from "react";
 import Link from "next/link";
 import PromptOutput from "../components/PromptOutput";
@@ -9,17 +9,16 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 // Get three random recommendations; can add more if ya want
 let timer;
-
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 export default function Prompts() {
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
   const [userPrompt, setUserPrompt] = useState("");
   const [allPrompts, setAllPrompts] = useState([]);
   const [threadId, setThreadId] = useState("");
@@ -33,7 +32,7 @@ export default function Prompts() {
     rec2: "",
   });
 
-  const searchParams = useSearchParams();
+  const searchParams = <Suspense>{useSearchParams()}</Suspense>;
   // meal is wat da user selects (unlimited, swipe, or dining)
   const meal = searchParams.get("meal");
   const recommend = () => {

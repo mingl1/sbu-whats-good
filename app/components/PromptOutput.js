@@ -18,7 +18,7 @@ const PromptOutput = ({ text, isNew }) => {
     } else {
       setDisplayedText(text);
     }
-  }, [text]);
+  }, [text, isNew]);
 
   return <Markdown className="max-w-[800px]">{displayedText}</Markdown>;
 };

@@ -18,31 +18,6 @@ const days = [
   "Saturday",
 ];
 let timer;
-function recommend() {
-  const recommendations = [
-    "Asian cuisine",
-    "Coffee and drinks",
-    "Small snack",
-    "Desserts and sweets",
-    "Healthy and hearty",
-    "Hamburger and sandwiches",
-    "Vegetarian",
-    "Vegan",
-    "Halal",
-    "Salad and fruits",
-  ];
-
-  let index1 = Math.floor(Math.random() * recommendations.length);
-  let rec1 = recommendations[index1];
-  recommendations.splice(index1, 1);
-  let index2 = Math.floor(Math.random() * recommendations.length);
-  let rec2 = recommendations[index2];
-  recommendations.splice(index2, 1);
-  let index3 = Math.floor(Math.random() * recommendations.length);
-  let rec3 = recommendations[index3];
-
-  return { rec1, rec2, rec3 };
-}
 
 const Prompts = () => {
   const [userPrompt, setUserPrompt] = useState("");
@@ -61,7 +36,31 @@ const Prompts = () => {
   const searchParams = useSearchParams();
   // meal is wat da user selects (unlimited, swipe, or dining)
   const meal = searchParams.get("meal");
+  function recommend() {
+    const recommendations = [
+      "Asian cuisine",
+      "Coffee and drinks",
+      "Small snack",
+      "Desserts and sweets",
+      "Healthy and hearty",
+      "Hamburger and sandwiches",
+      "Vegetarian",
+      "Vegan",
+      "Halal",
+      "Salad and fruits",
+    ];
 
+    let index1 = Math.floor(Math.random() * recommendations.length);
+    let rec1 = recommendations[index1];
+    recommendations.splice(index1, 1);
+    let index2 = Math.floor(Math.random() * recommendations.length);
+    let rec2 = recommendations[index2];
+    recommendations.splice(index2, 1);
+    let index3 = Math.floor(Math.random() * recommendations.length);
+    let rec3 = recommendations[index3];
+
+    return { rec1, rec2, rec3 };
+  }
   // Set inital recommended prompts so that client and server variables are da same
   useEffect(() => {
     setRecommendations(recommend());

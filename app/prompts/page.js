@@ -86,11 +86,11 @@ export default function Prompts() {
           threadId,
         });
         console.log(messages.data);
-        return messages.data.status === "completed";
+        return messages.data.status;
       };
       timer = setInterval(async () => {
         let r = await getMessages();
-        if (r) {
+        if (r === "complete") {
           const answer = await axios
             .get(`/api/messages?threadId=${threadId}`)
             .then((res) => {
@@ -106,6 +106,12 @@ export default function Prompts() {
 
           // setAllPrompts([newPrompt, ...allPrompts]);
           setRunId("");
+          return clearInterval(timer);
+        } else if (r === "failed") {
+          setRunId("");
+          alert(
+            "Sorrt, we are unable to process your request at the moment due to high volume of requests. Please try again later."
+          );
           return clearInterval(timer);
         }
       }, 1000);
@@ -198,14 +204,13 @@ export default function Prompts() {
     view = allPrompts.map((tuple, index) => {
       if (!tuple.prompt) {
         return (
-          <Skeleton
-            key={index}
-            height={200}
-            width={800}
-            count={1}
-            className="bg-[#211c1c] rounded-md breathe"
-            style={{ backgroundColor: "#262626" }}
-          />
+          <div key={index} className="min-w-full">
+            <Skeleton
+              style={{ backgroundColor: "#262626" }}
+              height={200}
+              // width={"100%"}
+            />
+          </div>
         );
       }
       return (

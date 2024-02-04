@@ -3,10 +3,11 @@ import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import React from 'react'
 import Link from "next/link";
+import PromptOutput from '../components/PromptOutput';
 
 function recommend() {
     const recommendations = [
-        "Asian cuisine near East Side",
+        "Asian cuisine",
         "Coffee and drinks",
         "Small snack",
         "Desserts and sweets",
@@ -14,6 +15,8 @@ function recommend() {
         "Hamburger and sandwiches",
         "Vegetarian",
         "Vegan",
+        "Halal",
+        "Salad and fruits"
       ];
     
       let index1 = Math.floor(Math.random() * recommendations.length);
@@ -21,7 +24,11 @@ function recommend() {
       recommendations.splice(index1, 1);
       let index2 = Math.floor(Math.random() * recommendations.length);
       let rec2 = recommendations[index2];
-      return { rec1, rec2 };
+      recommendations.splice(index2, 1);
+      let index3 = Math.floor(Math.random() * recommendations.length);
+      let rec3 = recommendations[index3];
+
+      return { rec1, rec2, rec3 };
 }
 
 const prompts = () => {
@@ -56,10 +63,11 @@ const prompts = () => {
   const addPrompt = (userPrompt) => {
     const newPrompt = {
       prompt: `${userPrompt}`,
-      response: "hallaow chicekn nuggets are good and u suck",
+    //   response: "hallaow chicekn nuggets are good and u suc",
+      response: `${userPrompt}`
     };
 
-    setAllPrompts([newPrompt, ...allPrompts]);
+    setAllPrompts((prevPrompts) => [newPrompt, ...prevPrompts]);
   };
 
   // Manages when Enter key is pressed
@@ -77,9 +85,9 @@ const prompts = () => {
     view = allPrompts.map((tuple, index) => (
       <div key={index} className="w-full">
         <p className="border-t border-gray-700 my-5 w-full"></p>
-        <p>{tuple.prompt}</p>
+        <p className="max-w-[800px]">{tuple.prompt}</p>
         <p className="border-t border-gray-700 my-5 w-full"></p>
-        <p className="mb-5">{tuple.response}</p>
+        <PromptOutput text={`${tuple.response}`} isNew={(index === 0)} />
       </div>
     ));
   }
@@ -104,6 +112,9 @@ const prompts = () => {
             </div>
             <div onClick={() => addPrompt(recommendations.rec2)} className="cursor-pointer p-1 bg-neutral-800 text-center rounded-md">
               {recommendations.rec2}
+            </div>
+            <div onClick={() => addPrompt(recommendations.rec3)} className="cursor-pointer p-1 bg-neutral-800 text-center rounded-md">
+              {recommendations.rec3}
             </div>
           </div>
         </div>

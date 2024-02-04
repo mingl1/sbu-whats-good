@@ -189,7 +189,7 @@ export default function Prompts() {
       formBody.append("instructions", instructions);
       // const runId = await axios.post("/api/run", formBody);
       // console.log(runId.data);
-      // setRunId(runId.data.id);
+      setRunId(runId.data.id);
     }
   };
   // Show output of the user prompts&response only when they exist

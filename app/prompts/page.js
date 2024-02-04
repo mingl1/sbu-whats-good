@@ -90,7 +90,7 @@ export default function Prompts() {
       };
       timer = setInterval(async () => {
         let r = await getMessages();
-        if (r === "complete") {
+        if (r === "completed") {
           const answer = await axios
             .get(`/api/messages?threadId=${threadId}`)
             .then((res) => {

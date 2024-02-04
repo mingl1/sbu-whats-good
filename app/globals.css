@@ -31,3 +31,10 @@ body {
     text-wrap: balance;
   }
 }
+.breathe {
+  animation: breathe 4s infinite;
+}
+p {
+  margin: 0;
+  padding: 0;
+}

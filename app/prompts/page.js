@@ -201,9 +201,10 @@ export default function Prompts() {
           <Skeleton
             key={index}
             height={200}
-            width={800}
+            width={"100%"}
             count={1}
-            className="bg-[#211c1c] rounded-md"
+            className="bg-[#211c1c] rounded-md breathe"
+            style={{ backgroundColor: "#262626" }}
           />
         );
       }
@@ -220,25 +221,27 @@ export default function Prompts() {
 
   return (
     <div className="flex flex-col shrink-0 justify-center items-center">
-      <div className="flex flex-col w-auto">
-        <div className="mt-10 mb-10">
+      <div className="flex flex-col w-1/2">
+        <div className="mt-10 mb-10 min-w-[300px]">
           <div className="flex justify-between">
-            <p className="mb-2">{plan}</p>
-            <Link href="/">Wolfieats🍕</Link>
+            <p className="mb-2 text-2xl">{plan}</p>
+            <Link href="/" className="text-2xl mb-2">
+              Wolfieats🍕
+            </Link>
           </div>
           <textarea
             onKeyDown={newPrompt}
             onChange={changeUserPrompt}
             placeholder="Ask about your food options at Stony Brook University!"
-            className="resize-none outline-none font-sans font-xs w-[800px] h-min p-2 bg-neutral-800 rounded-md border-solid border-2 border-[#586A6A]"
+            className="resize-none outline-none font-sans font-xs w-full h-min p-2 bg-neutral-800 rounded-md border-solid border-2 border-[#586A6A] min-w-[300px] max-w-full"
           ></textarea>
-          <div className="flex justify-center max-w-[800] gap-2">
+          <div className="flex justify-center max-w-[800] gap-2 text-center ">
             <div
               onClick={() => {
                 setUserPrompt(recommendations.rec1);
                 handleClick(recommendations.rec1);
               }}
-              className="cursor-pointer p-1 bg-neutral-800 text-center rounded-md"
+              className="cursor-pointer p-4 bg-neutral-800 text-center rounded-md flex justify-center align-middle"
             >
               {recommendations.rec1}
             </div>
@@ -247,7 +250,7 @@ export default function Prompts() {
                 setUserPrompt(recommendations.rec2);
                 handleClick(recommendations.rec2);
               }}
-              className="cursor-pointer p-1 bg-neutral-800 text-center rounded-md"
+              className="cursor-pointer p-4 bg-neutral-800 text-center rounded-md flex justify-center align-middle"
             >
               {recommendations.rec2}
             </div>
@@ -256,7 +259,7 @@ export default function Prompts() {
                 setUserPrompt(recommendations.rec3);
                 handleClick(recommendations.rec3);
               }}
-              className="cursor-pointer p-1 bg-neutral-800 text-center rounded-md"
+              className="cursor-pointer p-4 bg-neutral-800 text-center rounded-md"
             >
               {recommendations.rec3}
             </div>

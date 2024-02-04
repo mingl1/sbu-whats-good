@@ -5,6 +5,7 @@ import React from 'react'
 import Link from "next/link";
 import PromptOutput from '../components/PromptOutput';
 
+// Get three random recommendations; can add more if ya want
 function recommend() {
     const recommendations = [
         "Asian cuisine",
@@ -40,6 +41,7 @@ const prompts = () => {
   // meal is wat da user selects (unlimited, swipe, or dining)
   const meal = searchParams.get("meal");
 
+  // Set inital recommended prompts so that client and server variables are da same
   useEffect(() => {
     setRecommendations(recommend());
   }, []);
@@ -63,14 +65,14 @@ const prompts = () => {
   const addPrompt = (userPrompt) => {
     const newPrompt = {
       prompt: `${userPrompt}`,
-    //   response: "hallaow chicekn nuggets are good and u suc",
+      // REPLACE RESPONSE WITH DA ACTUAL RESPONSE FROM THE AI
       response: `${userPrompt}`
     };
 
-    setAllPrompts((prevPrompts) => [newPrompt, ...prevPrompts]);
+    setAllPrompts([newPrompt, ...allPrompts]);
   };
 
-  // Manages when Enter key is pressed
+  // Manages when Enter key is pressed (create a new prompt)
   const newPrompt = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -79,7 +81,7 @@ const prompts = () => {
     }
   };
 
-  // Show output of the user prompts+response only when they exist
+  // Show output of the user prompts&response only when they exist
   let view;
   if (allPrompts.length > 0) {
     view = allPrompts.map((tuple, index) => (
@@ -98,7 +100,7 @@ const prompts = () => {
         <div className="mt-10 mb-10">
           <div className="flex justify-between">
             <p className="mb-2">{plan}</p>
-            <Link href={{ pathname: "/" }}>Wolfieats🍕</Link>
+            <Link href="/">Wolfieats🍕</Link>
           </div>
           <textarea
             onKeyDown={newPrompt}

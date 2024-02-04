@@ -8,8 +8,9 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 // Get three random recommendations; can add more if ya want
+let timer;
 
-const Prompts = () => {
+export default function Prompts() {
   const days = [
     "Sunday",
     "Monday",
@@ -19,7 +20,6 @@ const Prompts = () => {
     "Friday",
     "Saturday",
   ];
-  let timer;
   const [userPrompt, setUserPrompt] = useState("");
   const [allPrompts, setAllPrompts] = useState([]);
   const [threadId, setThreadId] = useState("");
@@ -268,6 +268,4 @@ const Prompts = () => {
       </div>
     </div>
   );
-};
-
-export default Prompts;
+}
